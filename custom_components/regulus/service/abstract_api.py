@@ -1,3 +1,4 @@
+import logging
 from abc import ABC, abstractmethod
 from typing import Generic, TypeVar, Any, Dict
 from urllib.parse import urlencode
@@ -8,6 +9,8 @@ from ..const import REGISTRY_MAPPERS
 
 T = TypeVar('T')
 registry_mapper: Dict[str, str] = {}
+
+_LOGGER = logging.getLogger(__name__)
 
 class AbstractApi(Generic[T], ABC):
     page: str

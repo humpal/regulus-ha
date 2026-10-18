@@ -1,7 +1,10 @@
 import requests
+import logging
 from typing import Dict
 from .session_factory import SessionFactory
 from .xml_parser_service import parse_acer_value
+
+_LOGGER = logging.getLogger(__name__)
 
 class LoginService:
 
@@ -40,11 +43,11 @@ class LoginService:
                 self.validate_login_status(login_response.text)
 
             redirect_url = login_response.headers.get("Location", "/home.xml")
-            print(f"Logged in and redirect to {redirect_url}")
+            _LOGGER.info(f"Logged in and redirect to {redirect_url}")
             count += 1
 
         return redirect_url
 
     def validate_login_status(self, data: str):
         acer_value = parse_acer_value(data)
-        print(f"Login error {acer_value}")
+        _LOGGER.info(f"Login error {acer_value}")

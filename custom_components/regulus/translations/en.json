@@ -23,10 +23,16 @@
           "polling_interval": "Polling interval (seconds)",
           "enable_home": "Enable Home",
           "enable_heatPump": "Enable Heat Pump",
+          "enable_heatPumpAdmin": "Enable Heat Pump Admin",
           "enable_dashboard": "Enable Dashboard",
           "enable_water": "Enable Water",
+          "enable_waterAdmin": "Enable Water Admin",
           "enable_zone1": "Enable Zone 1",
           "enable_zone2": "Enable Zone 2",
+          "enable_zone3": "Enable Zone 3",
+          "enable_zone4": "Enable Zone 4",
+          "enable_zone5": "Enable Zone 5",
+          "enable_zone6": "Enable Zone 6",
           "enable_aku": "Enable AKU"
         }
       }

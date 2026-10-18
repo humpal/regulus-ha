@@ -6,3 +6,5 @@ class WaterResponseSchema(BaseModel):
     waterState: DeviceSchema
     waterComfortTemperature: DeviceSchema
     waterSetbackTemperature: DeviceSchema
+    waterAdHocTriggerState: DeviceSchema
+    waterAdHocTriggerRequiredTemperature: DeviceSchema

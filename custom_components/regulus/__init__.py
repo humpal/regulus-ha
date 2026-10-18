@@ -7,11 +7,18 @@ from datetime import timedelta
 from .coordinator import RegulusUpdateCoordinator
 from .api.dashboard.dashboard_api import DashboardApi
 from .api.heatPump.heatPump_api import HeatPumpApi
+from .api.heatPumpAdmin.heatPump_admin_api import HeatPumpAdminApi
 from .api.home.home_api import HomeApi
 from .api.water.water_api import WaterApi
-from .api.zone1.zone1_api import Zone1Api
+from .api.waterAdmin.water_admin_api import WaterAdminApi
 from .api.aku.aku_api import AkuApi
+from .api.uniModule2.uni2_api import Uni2Api
+from .api.zone1.zone1_api import Zone1Api
 from .api.zone2.zone2_api import Zone2Api
+from .api.zone3.zone3_api import Zone3Api
+from .api.zone4.zone4_api import Zone4Api
+from .api.zone5.zone5_api import Zone5Api
+from .api.zone6.zone6_api import Zone6Api
 from .const import DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
@@ -27,14 +34,21 @@ API_CLASSES = [
     AkuApi,
     DashboardApi,
     HeatPumpApi,
+    HeatPumpAdminApi,
     HomeApi,
     WaterApi,
+    WaterAdminApi,
+    Uni2Api,
     Zone1Api,
     Zone2Api,
+    Zone3Api,
+    Zone4Api,
+    Zone5Api,
+    Zone6Api,
 ]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    _LOGGER.debug("SETUP: async_setup_entry called for %s", entry.entry_id)
+    _LOGGER.info("SETUP: async_setup_entry called for %s", entry.entry_id)
 
     hass.data.setdefault(DOMAIN, {})
 
@@ -55,7 +69,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         option_key = f"enable_{api.key}"
 
         if not entry.options.get(option_key, True):
-            _LOGGER.debug("%s API disabled", api.key)
+            _LOGGER.info("%s API disabled", api.key)
             continue
 
         try:

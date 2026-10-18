@@ -1,5 +1,8 @@
+import logging
 from pydantic import BaseModel
 from typing import Dict, Optional, Union, Callable
+
+_LOGGER = logging.getLogger(__name__)
 
 class RegistryResult(BaseModel):
     value: Optional[Union[str, bool, int]]
@@ -26,7 +29,7 @@ def get_registry_map(parsed: Dict) -> Dict[str, str]:
             value = input_item.get("@VALUE", "")
             result[name] = value
     except Exception as e:
-        print("Error extracting registry map:", e)
+        _LOGGER.info("Error extracting registry map:", e)
     return result
 
 
@@ -34,7 +37,7 @@ def get_acer_value(parsed: Dict) -> str:
     try:
         return parsed["LOGIN"]["ACER"].get("@VALUE", "")
     except Exception as e:
-        print("Error extracting ACER value:", e)
+        _LOGGER.info("Error extracting ACER value:", e)
         return ""
 
 # converts response xml to map
@@ -48,7 +51,7 @@ def parse_xml(operation, xml: str):
         parsed = xmltodict.parse(xml)
         return operation(parsed)
     except Exception as e:
-        print("Error parsing XML:", e)
+        _LOGGER.info("Error parsing XML:", e)
         raise e
 
 

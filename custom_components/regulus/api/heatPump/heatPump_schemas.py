@@ -2,6 +2,10 @@ from pydantic import BaseModel
 from ...schema import DeviceSchema
 
 class HeatPumpResponseSchema(BaseModel):
+    hpMasterSwitch: DeviceSchema
+    hpCompressorRunning: DeviceSchema
+    hpStatusText: DeviceSchema
+    hpCompressorSpeed: DeviceSchema
     runningTime: DeviceSchema
     idleTime: DeviceSchema
     overallStatisticsTotalHours: DeviceSchema
